@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'includes/navbar.html' %}
+
+    {% for tour in tours %}
+
+        <div class="card">
+            <h5 class="card-header">{{ tour.title }}</h5>
+            <div class="card-body">
+                <p class="card-text">{{ tour.body }}</p>
+                <a href="{%  url 'detail' tour.pk %}" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+    {% include 'includes/footer.html' %}
+{% endblock content %}
+
+

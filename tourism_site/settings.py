@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     # local apps
     'users.apps.UsersConfig',
+    'tours.apps.ToursConfig',
     # default apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -121,7 +122,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # for CSS
+
 AUTH_USER_MODEL = 'users.CustomUser'  # for create USERS
 LOGIN_REDIRECT_URL = 'home'     # url after login
 LOGOUT_REDIRECT_URL = 'home'    # url after logout
+
+
+MEDIA_URL = '/media/'  # for upload images
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
