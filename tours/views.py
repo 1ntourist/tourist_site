@@ -5,9 +5,13 @@ from .models import *
 from .forms import *
 
 
+# class TestTemplateView(TemplateView):
+#     template_name = 'test_index.html'
+
+
 class ArticleListView(LoginRequiredMixin, ListView):
     model = Tour
-    template_name = 'test.html'
+    template_name = 'tour_list.html'
     login_url = 'login'
     paginate_by = 5
     context_object_name = 'tours'
@@ -17,8 +21,3 @@ class TourDetailView(DetailView):
     model = Tour
     template_name = 'tour_detail.html'
     context_object_name = 'tour'
-
-
-class CommentCreateView(CreateView):
-    model = Comment
-    fields = ['comment']

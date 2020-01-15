@@ -3,43 +3,30 @@
 {% block content %}
     {% include 'includes/navbar.html' %}
     <div>
-    <div class="card">
-        <div class="card-header">
-            {{ tour.title }}
-        </div>
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p>{{ tour.category }}</p>
-                <p>{{ tour.detail }}</p>
-                <p>{{ tour.date_and_price }}</p>
-                <p>{{ tour.map }}</p>
-                <p>{{ tour.presentation }}</p>
-            </blockquote>
-        </div>
-        {% for comment in comm.comments.all %}
-            <p >{{ comment.author }}: {{ comment.body }}   {{ comment.date }}</p>
-        {% endfor %}
-        <div>
+        <div class="card">
+            <div class="card-header">
+                {{ tour.title }}
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>{{ tour.presentation }}</p>
+                    <p>{{ tour.detail }}</p>
+                    <p>{{ tour.date_and_price }}</p>
+                    <p>{{ tour.category }}</p>
+                    Карта: <img src="{{ tour.map.url }}" height="150" alt=""/>
+                </blockquote>
+            </div>
+            <div>
+                {% for image in tour.images.all %}
+                    <img src="{{ image.images.url }}" height="200" alt=""/>
+                {% endfor %}
+            </div>
+            <!--------------------------- END OF TOURS--------------------------->
+            {% for comment in tour.comments.all %}
+                <p>{{ comment.author }}: {{ comment.body }}. {{ comment.date }}</p>
+            {% endfor %}
 
+            <!------------------------------ COMMENTS ----------------------------->
 
-            {%  if new_comment %}
-                <h2>Ваш комментарий добавлен.</h2>
-                <h2>Добавьте комментарий.</h2>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button><input type="submit" value="Добавить"></button>
-                </form>
-            {% else %}
-                <h2>Добавьте комментарий.</h2>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <p><input type="submit" value="Добавить"></p>
-                </form>
-            {% endif %}
-        </div>
-
-
-    {% include 'includes/footer.html' %}
+            {% include 'includes/footer.html' %}
 {%  endblock %}
