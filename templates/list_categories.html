@@ -1,0 +1,13 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'includes/navbar.html' %}
+        <div class="list-group">
+            {% for category in categories %}
+                <ul>
+                    <li><a href="{% url 'list_tours' category.id %}">{{ category.category }}</a></li>
+                </ul>
+            {% endfor %}
+        </div>
+    {% include 'includes/footer.html' %}
+{% endblock %}

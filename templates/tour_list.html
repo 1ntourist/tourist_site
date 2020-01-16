@@ -6,7 +6,7 @@
     <div class="">
     {% for tour in tours %}
         <div>
-        <a href="{% url 'detail' tour.pk %}">{{ tour.title }}</a>
+        <a href="{% url 'detail' tour.category.id tour.pk %}">{{ tour.title }}</a>
         </div>
     {% endfor %}
     </div>
