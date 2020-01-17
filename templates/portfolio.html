@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+    {% if user.is_authenticated %}
 {% include 'includes/navbar.html' %}
 {% block content %}
     {% for tour in tours %}
 
     {% endfor %}
 {% endblock %}
+{% endif %}

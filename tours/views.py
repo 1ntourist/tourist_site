@@ -54,26 +54,21 @@ def list_of_tours(requests, category__id):
 
 
 def detail_of_tour(request, category, id):
-    tour = Tour.objects.all()
-    tour = tour.filter(category_id=category, id=id)
-    template_name = 'tour_detail.html'
+    tour = get_object_or_404(Tour, category=category, id=id)
 
+    comments = tour.comments.all()
 
     new_comment = None
-    # Comment posted
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
-
-            # Create Comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
-            # Assign the current post to the comment
+            new_comment.name = request.user
             new_comment.tour = tour
-            # Save the comment to the database
             new_comment.save()
     else:
         comment_form = CommentForm()
-
-    return render(request, template_name, {'tours': tour,
-                                           'new_comment': new_comment,
-                                           'comment_form': comment_form})
+    return render(request, 'tour_detail.html', {'tour': tour,
+                                                  'comments': comments,
+                                                  'new_comment': new_comment,
+                                                  'comment_form': comment_form})

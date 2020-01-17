@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% include 'includes/navbar.html' %}
-    <div>
-        {% for tour in tours %}
-            <h3><a href="{% url 'detail' tour.category.id tour.id %}">{{ tour.title }}</a></h3>
-            <p>{{ tour.presentation | truncatewords:7 }}</p>
-        {% endfor %}
-    </div>
-    {% include 'includes/footer.html' %}
+    {% if user.is_authenticated %}
+        {% include 'includes/navbar.html' %}
+        <div>
+            {% for tour in tours %}
+                <h3><a href="{% url 'detail' tour.category.id tour.id %}">{{ tour.title }}</a></h3>
+                <p>{{ tour.presentation | truncatewords:7 }}</p>
+            {% endfor %}
+        </div>
+        {% include 'includes/footer.html' %}
+    {% endif %}
 {% endblock %}

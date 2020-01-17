@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% if user.is_authenticated %}
 {% block content %}
     <div class="nav-link">
     {% include 'includes/navbar.html' %}
@@ -12,3 +13,4 @@
     </div>
     <div class="footer-area">{% include 'includes/footer.html' %}</div>
 {% endblock %}
+{% endif %}

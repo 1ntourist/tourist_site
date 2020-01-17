@@ -1,7 +1,9 @@
 {%  extends 'base.html' %}
+
 {% load static %}
 {% block content %}
-    {% include 'includes/navbar.html' %}
+    {% if user.is_authenticated %}
+        {% include 'includes/navbar.html' %}
         <div class="list-group">
             {% for category in categories %}
                 <ul>
@@ -9,5 +11,6 @@
                 </ul>
             {% endfor %}
         </div>
-    {% include 'includes/footer.html' %}
+        {% include 'includes/footer.html' %}
+    {% endif %}
 {% endblock %}
